@@ -10,6 +10,7 @@ using namespace std;
 bool CompararArreglos(char [],char [],int,int);
 long long int RetornarNumero(int [], int);
 int RetornarCadena(long long int, int*);
+void ImpriArregloInt(int [], int);
 
 
 /* ******************************** main ******************************** */
@@ -138,7 +139,7 @@ int main()
 
                 while (letra!=',');
 
-                 longitud2=longitud2-1;
+                longitud2=longitud2-1;
 
                 ban=CompararArreglos(arreglo1,arreglo2,longitud1,longitud2);
 
@@ -268,7 +269,7 @@ int main()
                 int longitud=0;
                 char arregOriginal [500];
 
-                cout<<endl<<"Ingresa una cadena de caracteres y termine con ',': ";
+                cout<<endl<<"Ingresa una cadena de caracteres (puede contener numeros) y termine con ',': ";
 
                 do{
 
@@ -293,24 +294,11 @@ int main()
 
                 for (int j=0;j<longitud-1;j++){
 
-                    //int contador=0;
-
                     for (int k=longitud-1;k>0+j;k--){
 
                         if (arregOriginal[j]==arreglo[k]){
                             arregOriginal[k]='\0';
-                            //contador+=1;
                         }
-
-                        /*if (arregOriginal[j]==arreglo[k] && contador>=1){
-                            arregOriginal[j]=arreglo[j+1];
-                            break;
-                        }
-
-                        else{
-                            arregOriginal[j]=arreglo[j];
-                        }*/
-
                     }
 
                     cout<<arregOriginal[j];
@@ -320,6 +308,605 @@ int main()
                 break;
 
             }
+
+        case 8: //Escriba un programa que reciba una cadena de caracteres y separe los números del resto de caracteres, generando una cadena que no tiene números y otra con los números que había en la cadena original.
+
+            {   char letra;
+                char arreglo [500];
+                int longitud=0;
+                char arregOriginal [500];
+                char array [500];
+
+                cout<<endl<<"Ingresa una cadena de caracteres y termine con ',': ";
+
+                do{
+
+                    cin>>letra;
+                    arreglo[longitud]=letra;
+                    longitud+=1;
+
+                }
+
+                while (letra!=',');
+
+                cout<<endl<<"Original: ";
+
+                for (int i=0;i<longitud-1;i++){
+
+                    arregOriginal[i]=arreglo[i];
+                    cout<<arregOriginal[i];
+
+                }
+
+                cout<<"."<<endl;
+                cout<<"Texto: ";
+
+                for (int j=0;j<longitud-1;j++){
+
+                    if (arregOriginal[j]>=48 && arregOriginal[j]<=57){
+                        array[j]=arregOriginal[j];
+                        arregOriginal[j]='\0';
+                    }
+
+                    else{
+                        array[j]='\0';
+                    }
+
+                    cout<<arregOriginal[j];
+
+                }
+
+                cout<<".  ";
+                cout<<"Numero: ";
+
+                for (int k=0;k<longitud;k++){
+
+                    cout<<array[k];
+
+                }
+
+                cout<<"."<<endl;
+
+                break;
+
+            }
+
+        case 9: //Escribir un programa que reciba un número n y lea una cadena de caracteres numéricos, el programa debe separar la cadena de caracteres en números de n cifras, sumarlos e imprimir el resultado. En caso de no poderse dividir exactamente en números de n cifras se colocan ceros a la izquierda del primer número.  Ejemplo: Si n=3 y se lee el arreglo 87512395 la suma seria 087+512+395=994.
+
+            {   char letra;
+                int arreglo [500];
+                int array [500];
+                int longitud=0, num;
+                long long suma=0;
+                long long int numero=0;
+                int cont1=0, cont2=1;
+                int aux;
+
+                cout<<endl<<"Ingrese un numero entero: ";
+                cin>>num;
+
+                cout<<endl<<"Ingresa una cadena de caracteres numericos y termine con ',': ";
+
+                do{
+
+                    cin>>letra;
+                    arreglo[longitud]=letra;
+                    longitud+=1;
+
+                }
+
+                while (letra!=',');
+
+                cout<<endl<<"Original: "<<RetornarNumero(arreglo,longitud)<<"."<<endl;
+
+                if ((longitud-1)%num==0){
+                    aux=(longitud-1)/num;
+                }
+                else{
+                    aux=((longitud-1)/num)+1;
+                }
+
+                for (int j=0;j<aux;j++){
+
+                    long long int acumulado=0;
+                    int cont3=num-1;
+
+                    for (int i=longitud-2-(cont1*num);i>=longitud-1-(cont2*num);i--){
+
+                        array[cont3]=arreglo[i];
+
+                        cont3-=1;
+
+                        cout<<endl<<i<<" "<<arreglo[i];
+
+                    }
+
+                    acumulado=RetornarNumero(array,num+1);
+
+                    cout<<endl<<j<<" "<<acumulado<<endl;
+
+                    suma=suma+acumulado;
+
+                    cont1+=1;
+                    cont2+=1;
+
+                }
+
+
+                cout<<"Suma: "<<suma<<endl;
+
+                break;
+
+            }
+
+        case 10: //Escribir un programa que permita convertir un número en el sistema romano al sistema arábigo usado actualmente. A continuación se encuentran los caracteres usados en el sistema romano y su equivalente arábigo:M: 1000 D: 500 C: 100 L: 50 X: 10 V: 5 I: 1
+
+            {   char letra;
+                char arreglo [500];
+                int longitud=0;
+                int array [500];
+                char romanos [7]={'M','D','C','L','X','V','I'};
+                int numeros [7]={1000,500,100,50,10,5,1};
+                int total=0;
+
+                cout<<endl<<"Ingresa un numero en el sistema romano (caracteres en mayusculas) y termine con ',': ";
+
+                do{
+
+                    cin>>letra;
+                    arreglo[longitud]=letra;
+                    longitud+=1;
+
+                }
+
+                while (letra!=',');
+
+                cout<<endl<<"El numero ingresado fue: ";
+
+                for (int k=0;k<longitud-1;k++){
+
+                    //arregOriginal[k]=arreglo[k];
+                    cout<<arreglo[k];
+
+                }
+
+                for (int i=0;i<longitud-1;i++){
+
+                    for (int j=0;j<7;j++){
+
+                        if (arreglo[i]==romanos[j]){
+                            array[i]=numeros[j];
+                        }
+
+                    }
+
+                    //cout<<endl<<array[i];
+
+                }
+
+                for (int k=0;k<longitud-1;k++){
+
+                    if (array[k]>=array[k+1]){
+                        total=total+array[k];
+                    }
+                    else{
+                        total=total-array[k];
+                    }
+
+                }
+
+                cout<<endl<<"Que corresponde a: "<<total<<"."<<endl;
+
+                break;
+
+            }
+
+        case 11: //Escriba un programa que permita manejar las reservas de asientos en una sala de cine, los asientos de la sala de cine están organizados en 15 filas con 20 asientos cada una. El programa debe mostrar una representación de la sala que indique que asientos están disponibles y cuales se encuentran reservados. Además debe permitir realizar reservas o cancelaciones al ingresar la fila (letras A-O) y el número del asiento (números 1-20).
+
+            {   char matriz [15][20];
+                char reserva='+';
+                char disponible='-';
+                char array [15]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O'};
+                char asiento,silla;
+                char letra;
+                int numero;
+                char arreglo [500];
+                int opcion=1,posLetra=0,posNumero=0;
+
+                for (int i=0;i<15;i++){
+
+                    for (int j=0;j<20;j++){
+
+                        matriz[i][j]=disponible;
+                        //asiento=matriz[i][j];
+                        //cout<<"  "<<asiento<<"   ";
+
+                    }
+
+                    //cout<<endl;
+
+                }
+
+                while (opcion!=0){
+
+                    cout<<endl<<"Ingrese la opcion que desea: 1 para reservar, 2 para cancelar o 0 para terminar: ";
+                    cin>>opcion;
+
+                    switch(opcion){
+
+                    case 0:
+                    {
+                        cout<<endl<<"Asi ha quedado su reserva"<<endl;
+                        cout<<endl;
+
+                        for (int i=0;i<15;i++){
+
+                            for (int j=0;j<20;j++){
+
+                                //matriz[i][j]=disponible;
+                                asiento=matriz[i][j];
+                                cout<<"  "<<asiento<<"   ";
+
+                            }
+
+                            cout<<endl;
+
+                        }
+
+                        cout<<endl<<"Gracias, hasta la proxima"<<endl;
+                        break;
+                    }
+
+                    case 1:
+                    {
+
+                        cout<<endl<<"Asientos disponibles: ( - )"<<endl;
+                        cout<<endl;
+
+                        for (int i=0;i<15;i++){
+
+                            for (int j=0;j<20;j++){
+
+                                //matriz[i][j]=disponible;
+                                asiento=matriz[i][j];
+                                cout<<"  "<<asiento<<"   ";
+
+                            }
+
+                            cout<<endl;
+
+                        }
+
+                        cout<<endl<<"Ingrese el asiento que quiere reservar: Fila(A-O)Columna(1-20).  Termine con ',': ";
+                        int longitud=0;
+
+                        do{
+
+                            cin>>silla;
+                            arreglo[longitud]=silla;
+                            longitud+=1;
+
+                        }
+
+                        while (silla!=',');
+
+                        letra=arreglo[0];
+
+                        int contador=0;
+
+                        for (int j=48;j<=57;j++){
+
+                            if (arreglo[1]==j){
+                                numero=contador;
+                                contador=0;
+                                break;
+                            }
+                            else{
+                                contador+=1;
+                            }
+
+                        }
+
+                        for (int j=48;j<=57;j++){
+
+                            if (arreglo[2]==j){
+                                numero=(numero*10)+contador;
+                                break;
+                            }
+                            else{
+                                contador+=1;
+                            }
+
+                        }
+
+                        for (int i=0;i<15;i++){
+
+                            if (letra==array[i]){
+                                posLetra=i;
+                                break;
+                            }
+
+                        }
+
+                        posNumero=numero-1;
+
+                        matriz[posLetra][posNumero]=reserva;
+
+                        break;
+
+
+                    }
+
+                    case 2:
+                    {
+
+                        cout<<endl<<"Asientos disponibles: ( - )"<<endl;
+                        cout<<endl;
+
+                        for (int i=0;i<15;i++){
+
+                            for (int j=0;j<20;j++){
+
+                                //matriz[i][j]=disponible;
+                                asiento=matriz[i][j];
+                                cout<<"  "<<asiento<<"   ";
+
+                            }
+
+                            cout<<endl;
+
+                        }
+
+                        cout<<endl<<"Ingrese el asiento que quiere cancelar: Fila(A-O)Columna(1-20).  Termine con ',': ";
+                        int longitud=0;
+
+                        do{
+
+                            cin>>silla;
+                            arreglo[longitud]=silla;
+                            longitud+=1;
+
+                        }
+
+                        while (silla!=',');
+
+                        letra=arreglo[0];
+
+                        int contador=0;
+
+                        for (int j=48;j<=57;j++){
+
+                            if (arreglo[1]==j){
+                                numero=contador;
+                                contador=0;
+                                break;
+                            }
+                            else{
+                                contador+=1;
+                            }
+
+                        }
+
+                        for (int j=48;j<=57;j++){
+
+                            if (arreglo[2]==j){
+                                numero=(numero*10)+contador;
+                                break;
+                            }
+                            else{
+                                contador+=1;
+                            }
+
+                        }
+
+                        for (int i=0;i<15;i++){
+
+                            if (letra==array[i]){
+                                posLetra=i;
+                                break;
+                            }
+
+                        }
+
+                        posNumero=numero-1;
+
+                        matriz[posLetra][posNumero]=disponible;
+
+                        break;
+
+
+                    }
+
+                    default: cout<<"Ha ingresado una opcion incorrecta"<<endl;
+
+                    }
+
+                }
+
+            break;
+
+        }
+
+        case 12: // Un cuadrado mágico es una matriz de números enteros sin repetir, en la que la suma de los números en cada columna, cada fila y cada diagonal principal tienen como resultado la misma constante. Escriba un programa que permita al usuario ingresar una matriz cuadrada, imprima la matriz y verifique si la matriz es un cuadrado mágico.
+
+            {   int n;
+
+                cout<<endl<<"Ingrese el orden de la matriz: ";
+                cin>>n;
+
+                char posicion;
+                int arreglo[500];
+                long long int numero=0;
+
+                int matriz [n][n];
+
+                for (int i=0;i<n;i++){
+
+                    for (int j=0;j<n;j++){
+
+                        int longitud=0;
+                        cout<<endl<<"Ingrese la posicion "<<i<<","<<j<<" de la matriz y finalice con ',': ";
+
+                        do{
+
+                            cin>>posicion;
+
+                            arreglo[longitud]=posicion;
+                            longitud+=1;
+
+                        }
+
+                        while (posicion!=',');
+
+                        numero=RetornarNumero(arreglo,longitud);
+
+                        matriz[i][j]=numero;
+
+                        if (i==n-1 && j==n-1){
+                            break;
+                        }
+
+                    }
+
+                }
+
+                cout<<endl<<"La matriz ingresada es la siguiente"<<endl;
+                cout<<endl;
+
+                int l=0;
+
+                for (int i=0;i<n;i++){
+
+                    for (int j=0;j<n;j++){
+
+                        l=matriz[i][j];
+                        cout<<"  "<<l<<"   ";
+
+                    }
+
+                    cout<<endl;
+
+                }
+
+                int valor=0;
+                bool validacion=false;
+
+                for (int i=0;i<n;i++){
+
+                    int suma=0;
+
+                    for (int j=0;j<n;j++){
+
+                        suma+=matriz[i][j];
+                        //cout<<endl<<suma<<" con j="<<j;
+
+                    }
+
+                    if (i==0){
+                        valor=suma;
+                    }
+                    else if (valor!=suma){
+                        validacion=false;
+                        break;
+                    }
+                    else if (valor==suma){
+                        validacion=true;
+                    }
+
+                    //cout<<endl<<"Suma="<<suma<<" "<<"Validacion="<<validacion;
+
+                }
+
+                for (int i=0;i<n;i++){
+
+                    int suma=0;
+
+                    for (int j=0;j<n;j++){
+
+                        suma+=matriz[j][i];
+                        //cout<<endl<<suma<<" con i="<<i;
+
+
+                    }
+
+                    if (valor!=suma){
+                        validacion=false;
+                        break;
+                    }
+                    else if (valor==suma){
+                        validacion=true;
+                    }
+
+                    //cout<<endl<<"Suma="<<suma<<" "<<"Validacion="<<validacion;
+
+                }
+
+                int suma=0;
+
+                for (int i=0;i<n;i++){
+
+                    for (int j=0;j<n;j++){
+
+                        if (i==j){
+                             suma+=matriz[i][j];
+                        }
+
+                        //cout<<endl<<suma<<" con "<<i<<"="<<j;
+
+                    }
+
+                }
+
+                if (valor==suma){
+                    validacion=true;
+                }
+
+                else{
+                    validacion=false;
+                }
+
+                //cout<<endl<<"Suma="<<suma<<" "<<"Validacion="<<validacion;
+
+                suma=0;
+
+                for (int i=0;i<n;i++){
+
+                    for (int j=n-1;j>=0;j--){
+
+                        if ((i+j)==(n-1) ){
+                            suma+=matriz[i][j];
+                        }
+
+                        //cout<<endl<<suma<<" con "<<i<<"="<<j;
+
+                    }
+
+                }
+
+                if (valor==suma){
+                    validacion=true;
+                }
+
+                else{
+                    validacion=false;
+                }
+
+                //cout<<endl<<"Suma="<<suma<<" "<<"Validacion="<<validacion;
+
+                if (validacion){
+                    cout<<endl<<"La matriz ingresada representa una cuadro magico"<<endl;
+                }
+                else{
+                    cout<<endl<<"La matriz ingresada no representa una cuadro magico"<<endl;
+                }
+
+                break;
+
+            }
+
+
+
+
 
 
 
@@ -439,4 +1026,14 @@ int RetornarCadena(long long int numero, int* ptr){
     }
 
     return longitud;
+}
+
+void ImpriArregloInt(int arreglo [], int longitud){
+
+    for (int i=0;i<longitud;i++){
+
+        cout<<arreglo[i];
+
+    }
+
 }
