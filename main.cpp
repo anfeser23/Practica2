@@ -10,6 +10,7 @@ using namespace std;
 bool CompararArreglos(char [],char [],int,int);
 long long int RetornarNumero(int [], int);
 int RetornarCadena(long long int, int*);
+int Estrellas(int (*ptr)[8]);
 void ImpriArregloInt(int [], int);
 
 
@@ -904,7 +905,345 @@ int main()
 
             }
 
+        case 13: //  Se tiene una fotografía digitalizada de una porción de la galaxia NGC 1300 que está ubicada a 61.000.000 de años luz del planeta Tierra. La representación digital de la imagen está constituida por una matriz de números enteros; en la cual, cada uno representa la cantidad de luz en ese punto de la imagen.  Elabore y pruebe una función que reciba un puntero a la matriz de enteros como argumento y que retorne el número de estrellas encontradas en la imagen. Ignore las posibles estrellas que puedan existir en los bordes de la matriz.
 
+            {   int matriz[6][8]={{0,3,4,0,0,0,6,8},{5,13,6,0,0,0,2,3},{2,6,2,7,3,0,10,0},{0,0,4,15,4,1,6,0},{0,0,7,12,6,9,10,4},{5,0,6,10,6,4,8,0}};
+
+                int (*ptr)[8]=matriz;
+
+                int estrellas=0;
+
+                estrellas=Estrellas(ptr);
+
+                cout<<endl<<"El numero de estrellas encontrado fue: "<<estrellas<<endl;
+
+                break;
+
+            }
+
+        case 14: //Elabore un programa que llene una matriz 5x5 con los números del 1 al 25 y la imprima, luego imprima la matriz rotada 90, 180 y 270 grados.
+
+            {   int matriz[5][5];
+                int matriz90[5][5];
+                int matriz180[5][5];
+                int matriz270[5][5];
+                //int aleatorio=0;
+                int contador=1;
+
+                //srand(time(0));
+
+                cout<<endl<<"Matriz original"<<endl;
+                cout<<endl;
+
+                for (int i=0;i<5;i++){
+
+                    for (int j=0;j<5;j++){
+
+                        //aleatorio=1+rand()%26;
+                        matriz[i][j]=contador;
+
+                        if (contador<10){
+                            cout<<"  "<<contador<<"  ";
+                        }
+                        else{
+                            cout<<" "<<contador<<"  ";
+                        }
+
+                        contador+=1;
+
+                    }
+
+                    cout<<endl;
+
+                }
+
+                cout<<endl<<"Matriz rotada 90 grados"<<endl;
+                cout<<endl;
+
+                for (int i=0;i<5;i++){
+
+                    int cont=4;
+
+                    for (int j=0;j<5;j++){
+
+                        matriz90[i][j]=matriz[cont][i];
+                        contador=matriz90[i][j];
+                        cont-=1;
+
+                        if (contador<10){
+                            cout<<"  "<<contador<<"  ";
+                        }
+                        else{
+                            cout<<" "<<contador<<"  ";
+                        }
+
+                    }
+
+                    cout<<endl;
+                }
+
+                cout<<endl<<"Matriz rotada 180 grados"<<endl;
+                cout<<endl;
+
+                for (int i=0;i<5;i++){
+
+                    int cont=4;
+
+                    for (int j=0;j<5;j++){
+
+                        matriz180[i][j]=matriz90[cont][i];
+                        contador=matriz180[i][j];
+                        cont-=1;
+
+                        if (contador<10){
+                            cout<<"  "<<contador<<"  ";
+                        }
+                        else{
+                            cout<<" "<<contador<<"  ";
+                        }
+
+                    }
+
+                    cout<<endl;
+                }
+
+                cout<<endl<<"Matriz rotada 270 grados"<<endl;
+                cout<<endl;
+
+                for (int i=0;i<5;i++){
+
+                    int cont=4;
+
+                    for (int j=0;j<5;j++){
+
+                        matriz270[i][j]=matriz180[cont][i];
+                        contador=matriz270[i][j];
+                        cont-=1;
+
+                        if (contador<10){
+                            cout<<"  "<<contador<<"  ";
+                        }
+                        else{
+                            cout<<" "<<contador<<"  ";
+                        }
+
+                    }
+
+                    cout<<endl;
+                }
+
+
+                break;
+
+            }
+
+        case 15: //
+
+            {   char letra;
+                int arreglo[4];
+                int arreglo1 [4];
+                int arreglo2 [4];
+                int resultado [4];
+                int longitud=0;
+                long long int numero=0;
+
+                cout<<endl<<"********Ingrese los datos del primer rectangulo*********"<<endl;
+
+                for (int i=0;i<4;i++){
+
+                    int longitud=0;
+
+                    if (i==0){
+                        cout<<endl<<"Ingrese la posicion x del rectangulo y finalice con: ";
+                    }
+                    else if (i==1){
+                        cout<<endl<<"Ingrese la posicion y del rectangulo y finalice con: ";
+                    }
+                    else if (i==2){
+                        cout<<endl<<"Ingrese el ancho del rectangulo y finalice con: ";
+                    }
+                    else if (i==3){
+                        cout<<endl<<"Ingrese el largo del rectangulo y finalice con: ";
+                    }
+
+                    do{
+
+                        cin>>letra;
+
+                        arreglo[longitud]=letra;
+                        longitud+=1;
+
+                    }
+
+                    while (letra!=',');
+
+                    numero=RetornarNumero(arreglo,longitud);
+
+                    arreglo1[i]=numero;
+
+                    if (i==4){
+                        break;
+                    }
+
+                }
+
+                cout<<endl<<"********Ingrese los datos del segundo rectangulo*********"<<endl;
+
+                for (int i=0;i<4;i++){
+
+                    int longitud=0;
+
+                    if (i==0){
+                        cout<<endl<<"Ingrese la posicion x del rectangulo y finalice con: ";
+                    }
+                    else if (i==1){
+                        cout<<endl<<"Ingrese la posicion y del rectangulo y finalice con: ";
+                    }
+                    else if (i==2){
+                        cout<<endl<<"Ingrese el ancho del rectangulo y finalice con: ";
+                    }
+                    else if (i==3){
+                        cout<<endl<<"Ingrese el largo del rectangulo y finalice con: ";
+                    }
+
+                    do{
+
+                        cin>>letra;
+
+                        arreglo[longitud]=letra;
+                        longitud+=1;
+
+                    }
+
+                    while (letra!=',');
+
+                    numero=RetornarNumero(arreglo,longitud);
+
+                    arreglo2[i]=numero;
+
+                    if (i==4){
+                        break;
+                    }
+
+                }
+
+                cout<<endl<<"Datos del primer rectangulo: {";
+
+                for (int j=0;j<4;j++){
+
+                    if (j!=3){
+                        cout<<arreglo1[j]<<",";
+                    }
+                    else{
+                        cout<<arreglo1[j]<<"}."<<endl;
+                    }
+
+                }
+
+                cout<<"Datos del segundo rectangulo: {";
+
+                for (int j=0;j<4;j++){
+
+                    if (j!=3){
+                        cout<<arreglo2[j]<<",";
+                    }
+                    else{
+                        cout<<arreglo2[j]<<"}."<<endl;
+                    }
+
+                }
+
+                for (int k=0;k<4;k++){
+
+                    if (k==0 || k==1){
+
+                        if (arreglo1[k]>=arreglo2[k]){
+                            resultado[k]=arreglo1[k];
+                        }
+                        else{
+                            resultado[k]=arreglo2[k];
+                        }
+
+                    }
+
+                    if (k==2){
+
+                        if ((arreglo1[k-2]+arreglo1[k])>=(arreglo2[k-2]+arreglo2[k])){
+                            resultado[k]=(arreglo2[k]+arreglo2[k-2])-resultado[k-2];
+                        }
+                        else{
+                            resultado[k]=(arreglo1[k]+arreglo1[k-2])-resultado[k-2];
+                        }
+
+                    }
+
+                    if (k==3){
+
+                        if ((arreglo1[k-2]+arreglo1[k])>=(arreglo2[k-2]+arreglo2[k])){
+                            resultado[k]=(arreglo2[k]+arreglo2[k-2])-resultado[k-2];
+                        }
+                        else{
+                            resultado[k]=(arreglo1[k]+arreglo1[k-2])-resultado[k-2];
+                        }
+
+                    }
+
+                }
+
+                if (resultado[2]>0 && resultado[3]>0){
+
+                    cout<<endl<<"Interseccion: {";
+
+                    for (int i=0;i<4;i++){
+                        if (i!=3){
+                            cout<<resultado[i]<<",";
+                        }
+                        else{
+                            cout<<resultado[i]<<"}."<<endl;
+                        }
+                    }
+                }
+
+                else{
+                    cout<<endl<<"Los resctangulos ingresados no tienen interseccion."<<endl;
+                }
+
+                break;
+
+            }
+
+        case 16: //En una malla de 2x2, realizando únicamente movimientos hacia la derecha y hacia abajo hay 6 posibles caminos para llegar de la esquina superior izquierda a la inferior derecha.  Escriba un programa que reciba un numero n y calcule el número de caminos posibles en una cuadricula de nxn.  Nota: la salida del programa debe ser: Para una malla de 2x2 puntos hay 6 caminos.
+
+            {
+
+                int orden=0;
+                long long int factorial1=1, factorial2=1;
+                int caminos=0;
+
+                cout<<endl<<"Ingrese un numero entero: ";
+                cin>>orden;
+
+                for (int i=1;i<=orden;++i){
+                    factorial1=factorial1*i;
+                }
+
+                cout<<endl<<factorial1;
+
+                for (int i=1;i<=(2*orden);++i){
+                    factorial2=factorial2*i;
+                }
+
+                cout<<endl<<factorial2;
+
+                caminos=(factorial2)/(factorial1*factorial1);
+
+                cout<<endl<<"El numero de caminos para una malla de "<<orden<<"x"<<orden<<" puntos hay "<<caminos<<" caminos"<<endl;
+
+                break;
+
+
+
+            }
 
 
 
@@ -1026,6 +1365,30 @@ int RetornarCadena(long long int numero, int* ptr){
     }
 
     return longitud;
+}
+
+int Estrellas(int (*ptr)[8]){
+
+    int estrellas=1;
+
+    for (int i=1;i<5;i++){
+
+        for (int j=1;j<7;j++){
+
+            int validacion=0;
+
+            validacion=ptr[i][j]+ptr[i][j-1]+ptr[i][j+1]+ptr[i-1][j]+ptr[i+1][j];
+
+            if ((validacion/5)>6){
+                estrellas+=1;
+            }
+
+            cout<<endl<<i<<" "<<j<<" "<<validacion<<" "<<estrellas;;
+
+        }
+    }
+
+    return estrellas;
 }
 
 void ImpriArregloInt(int arreglo [], int longitud){
