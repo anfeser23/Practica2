@@ -259,6 +259,8 @@ int main()
 
                 }
 
+                cout<<endl;
+
                 break;
 
             }
@@ -379,7 +381,7 @@ int main()
                 int array [500];
                 int longitud=0, num;
                 long long suma=0;
-                long long int numero=0;
+                //long long int numero;
                 int cont1=0, cont2=1;
                 int aux;
 
@@ -418,13 +420,13 @@ int main()
 
                         cont3-=1;
 
-                        cout<<endl<<i<<" "<<arreglo[i];
+                        //cout<<endl<<i<<" "<<arreglo[i];
 
                     }
 
                     acumulado=RetornarNumero(array,num+1);
 
-                    cout<<endl<<j<<" "<<acumulado<<endl;
+                    //cout<<endl<<j<<" "<<acumulado<<endl;
 
                     suma=suma+acumulado;
 
@@ -495,6 +497,8 @@ int main()
                     }
 
                 }
+
+                total += array[longitud - 1];
 
                 cout<<endl<<"Que corresponde a: "<<total<<"."<<endl;
 
@@ -1241,7 +1245,63 @@ int main()
 
                 break;
 
+            }
 
+        case 17: //Dos números a y b (a != b) son amigables si la suma de los divisores de a (excluyéndose el mismo) es igual a b, y viceversa. Ej: los divisores de 220 son 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 y 110; y suman 284. Los divisores de 284 son 1, 2, 4, 71 y 142; y suman 220. Entonces 220 y 284 son amigables. Escribir un programa que reciba un número y halle la suma de todos los números amigables menores al número ingresado.
+
+            {   int N,i;
+                int acumulado=0;
+                //bool validacion=false;
+
+                cout<<endl<<"Ingrese un numero entero: ";
+                cin>>N;
+
+                for (int j=(N-1);j>=1;j--){
+
+                    int divisores1=0;
+
+                    //cout<<endl<<"divisor mayor: "<<j;
+
+                    for (i=1;i<j;++i){
+
+                        if (j%i==0){
+                            divisores1=divisores1+i;
+                        }
+
+                    }
+
+                    //cout<<endl<<"Divisores 1: "<<divisores1;
+
+                    for (int k=1;k<N;k++){
+
+                        int divisores2=0;
+
+                        for (i=1;i<k;++i){
+
+                            if (k%i==0){
+
+                                divisores2=divisores2+i;
+
+                                //cout<<endl<<"Divisores 2 con k"<<k<<"="<<divisores2;
+                            }
+
+                        }
+
+                        if (divisores1==k && divisores2==j && j!=k){
+
+                            acumulado=acumulado+j+k;
+
+                        }
+
+                        //cout<<endl<<"Acumulado"<<"["<<j<<"]["<<k<<"]"<<acumulado;
+
+                    }
+
+                }
+
+                cout<<endl<<"El resultado de la suma es: "<<acumulado/2<<endl;
+
+                break;
 
             }
 
